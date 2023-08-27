@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up Page</title>
+<style>
+  /* General styles (you can keep these the same) */
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+  }
+
+  /* Video background styles (you can keep these the same) */
+  video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+
+  /* Menu styles (you can keep these the same) */
+  .menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    box-sizing: border-box;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+  }
+
+  /* Content styles (you can keep these the same) */
+  .content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 20vh 5%;
+    transform: translateY(-20px);
+    animation: slideDown 1s forwards;
+  }
+
+  /* Login form styles (you can keep these the same) */
+  .login-form {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    opacity: 1;
+    animation: fadeIn 1s forwards;
+    width: 90%;
+    max-width: 400px;
+  }
+
+  .login-form label,
+  .login-form input {
+    display: block;
+    margin-bottom: 1rem;
+    color: white;
+  }
+
+  .login-form input {
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    transition: background-color 0.3s ease;
+  }
+
+  .login-form input:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .login-form button {
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .login-form button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  /* Responsive adjustments (you can keep these the same) */
+  @media screen and (max-width: 768px) {
+    /* Adjust styles for smaller screens */
+    .login-form {
+      width: 80%;
+    }
+  }
+</style>
+</head>
+<body>
+  <video autoplay muted loop>
+    <source src="octagon_-_5192 (720p).mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="menu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html" class="login-button">Login</a> <!-- Add the login button to the menu -->
+  </div>
+
+  <div class="content">
+    <!-- Sign Up Form -->
+    <div class="login-form">
+      <h2 style="color: white; margin-bottom: 1rem;">Sign Up</h2>
+      <form id="signup-form">
+        <label for="fullname" style="color: white;">Full Name</label>
+        <input type="text" id="fullname" name="fullname" required>
+        
+        <label for="email" style="color: white;">Email</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="new-username" style="color: white;">Username</label>
+        <input type="text" id="new-username" name="new-username" required>
+        
+        <label for="new-password" style="color: white;">Password</label>
+        <input type="password" id="new-password" name="new-password" required>
+        
+        <button type="submit" style="background-color: rgba(255, 255, 255, 0.3); color: white; transition: background-color 0.3s ease;">Sign Up</button>
+
+        <p style="color: white;">Already have an account? <a href="login.html" style="color: white;">Log in</a></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- JavaScript logic for handling sign-up form submission -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const signupForm = document.getElementById("signup-form");
+      
+      signupForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const fullname = document.getElementById("fullname").value;
+        const email = document.getElementById("email").value;
+        const newUsername = document.getElementById("new-username").value;
+        const newPassword = document.getElementById("new-password").value;
+
+        // Store user information in local storage
+        const newUser = {
+          fullname,
+          email,
+          username: newUsername,
+          password: newPassword
+        };
+
+        // Check if users key already exists in local storage
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+        users.push(newUser);
+        localStorage.setItem("users", JSON.stringify(users));
+
+        alert("Registration successful!");
+        window.location.href = "login.html"; // Redirect to the login page after successful registration
+      });
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
